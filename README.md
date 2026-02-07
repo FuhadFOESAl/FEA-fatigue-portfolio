@@ -113,7 +113,7 @@ pip install numpy pandas matplotlib pyyaml seaborn
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/yourusername/fea-fatigue-portfolio.git
+git clone https://github.com/FuhadFOESAl/fea-fatigue-portfolio.git
 cd fea-fatigue-portfolio
 
 # 2. Generate plots (from sample data)
@@ -308,9 +308,9 @@ If you use this work as a reference, please cite:
 ```bibtex
 @misc{fea_fatigue_portfolio,
   title={FEA Proof + Fatigue Notebook: A Reproducible Engineering Workflow},
-  author={[Your Name]},
-  year={2024},
-  url={https://github.com/yourusername/fea-fatigue-portfolio}
+  author={[FuhadFOESAl]},
+  year={2026},
+  url={https://github.com/FuhadFOESAl/fea-fatigue-portfolio}
 }
 ```
 
@@ -335,8 +335,8 @@ All material properties are sourced from publicly available references (ASM Hand
 ## Contact
 
 For questions or collaboration:
-- Email: [your.email@example.com]
-- LinkedIn: [linkedin.com/in/yourprofile]
+- Email: [fuhad2029@gmail.com]
+- LinkedIn: [https://www.linkedin.com/in/fuhad-foesal-ahmed/]
 
 ---
 
