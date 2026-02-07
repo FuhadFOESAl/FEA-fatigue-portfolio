@@ -1,0 +1,25 @@
+# FEA Fatigue Portfolio - Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# Data processing
+numpy>=1.21.0
+pandas>=1.3.0
+
+# Visualization
+matplotlib>=3.4.0
+seaborn>=0.11.0
+
+# Configuration parsing
+pyyaml>=5.4.0
+
+# Optional: PDF report generation
+# weasyprint>=53.0  # Uncomment for PDF export (requires system dependencies)
+
+# Optional: Jupyter for interactive analysis
+# jupyter>=1.0.0
+# ipython>=7.0.0
+
+# Development tools (optional)
+# pytest>=6.0.0     # For unit testing
+# black>=21.0      # For code formatting
+# pylint>=2.8.0    # For code linting

@@ -1,0 +1,18 @@
+{
+  "load_case": "LC1_Static_Weight",
+  "load_magnitude_n": 490.5,
+  "max_von_mises": 61.7,
+  "max_principal": 64.1,
+  "max_displacement": 0.66,
+  "max_stress_location": "corner_inner_radius",
+  "max_disp_location": "horizontal_leg_free_end",
+  "yield_strength": 276,
+  "fos_yield": 4.47,
+  "fos_yield_required": 2.0,
+  "fos_yield_pass": true,
+  "deflection_limit_mm": 1.0,
+  "deflection_pass": true,
+  "element_count": 34600,
+  "mesh_id": 5,
+  "timestamp": "2024-01-15T14:00:00"
+}

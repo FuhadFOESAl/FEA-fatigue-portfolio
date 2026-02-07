@@ -1,0 +1,66 @@
+# Material Properties: Aluminum 6061-T6
+# Source: ASM Handbook Vol. 2, ASTM B209-21
+# All values in consistent SI units (MPa, mm, tonne)
+
+material:
+  name: "Aluminum 6061-T6"
+  designation: "6061-T6"
+  standard: "ASTM B209-21"
+  
+  # Basic Mechanical Properties
+  mechanical:
+    density: 2700.0          # kg/m³
+    youngs_modulus: 68900.0  # MPa
+    poisson_ratio: 0.33      # dimensionless
+    shear_modulus: 25900.0   # MPa (calculated: E/(2(1+ν)))
+    
+  # Strength Properties
+  strength:
+    yield_strength: 276.0    # MPa (0.2% offset)
+    ultimate_strength: 310.0 # MPa
+    shear_yield: 159.0       # MPa (approx 0.577×Sy)
+    
+  # Fatigue Properties (Basquin equation: σa = σ'f × (2N)^b)
+  fatigue:
+    fatigue_strength_coefficient: 410.0  # MPa (σ'f ≈ 1.32×Su)
+    fatigue_strength_exponent: -0.085    # dimensionless (typical for Al)
+    fatigue_ductility_coefficient: 0.35  # (ε'f, not used in stress-based)
+    fatigue_ductility_exponent: -0.6     # (c, not used in stress-based)
+    
+    # Endurance Limit (fully reversed, R=-1)
+    endurance_limit_rotating: 138.0      # MPa (0.5×Su for rotating beam)
+    endurance_limit_corrected: 96.0      # MPa (with Marin factors)
+    endurance_cycles: 10000000           # cycles (10^7)
+    
+    # Marin Correction Factors
+    marin_factors:
+      surface_factor_ka: 0.85      # machined surface
+      size_factor_kb: 0.85         # equivalent diameter ~50mm
+      load_factor_kc: 1.0          # combined loading
+      temperature_factor_kd: 1.0   # room temp
+      reliability_factor_ke: 0.814 # 99% reliability
+      
+  # Cyclic Stress-Strain (for advanced analysis)
+  cyclic:
+    cyclic_strength_coefficient: 469.0   # K' in MPa
+    cyclic_strain_hardening_exponent: 0.045  # n' dimensionless
+    
+  # Physical Properties
+  physical:
+    thermal_expansion: 23.6e-6   # /°C
+    thermal_conductivity: 167.0  # W/(m·K)
+    specific_heat: 896.0         # J/(kg·K)
+    
+  # Notes
+  notes: |
+    All properties sourced from publicly available references:
+    - ASM Handbook Volume 2: Properties and Selection: Nonferrous Alloys
+    - ASTM B209-21: Standard Specification for Aluminum and Aluminum-Alloy Sheet and Plate
+    - Fatigue properties estimated using standard approximations for aluminum alloys
+    
+    Endurance limit corrected using Marin factors for:
+    - Machined surface finish
+    - 50mm equivalent diameter
+    - 99% reliability requirement
+    
+    Conservative values selected where ranges exist in literature.

@@ -1,0 +1,185 @@
+# Load Case Definitions for L-Bracket Analysis
+# Part: LB-2024-001
+# Units: Newtons (N), millimeters (mm), MPa, seconds (s)
+
+analysis:
+  part_name: "L-Bracket Mount V1"
+  part_number: "LB-2024-001"
+  analysis_type: "Static Structural + Fatigue"
+  analyst: "[Your Name]"
+  date: "2024-01-15"
+  
+  # Global Settings
+  settings:
+    gravity: 9.81              # m/s²
+    mass_equipment: 50.0       # kg
+    unit_system: "mm_N_MPa"    # Consistent unit system
+    
+  # Load Cases
+  load_cases:
+    
+    # ============================================
+    # LOAD CASE 1: Static Weight (Service Load)
+    # ============================================
+    LC1_Static_Weight:
+      id: 1
+      name: "Static Weight - 1G"
+      description: "Equipment at rest, normal gravity loading"
+      type: "static"
+      
+      loads:
+        equipment_weight:
+          type: "force"
+          magnitude: 490.5       # N = 50 kg × 9.81 m/s²
+          direction: [0, 0, -1]  # -Z direction
+          distribution: "uniform_pressure"
+          application_surface: "horizontal_leg_top"
+          
+      boundary_conditions:
+        chassis_mount:
+          type: "fixed"
+          location: "vertical_leg_holes"
+          constrained_dofs: [1, 1, 1, 1, 1, 1]  # UX, UY, UZ, RX, RY, RZ
+          
+      acceptance_criteria:
+        max_stress_limit: 138.0    # MPa (0.5 × Sy, generous for fatigue)
+        max_deflection_limit: 1.0  # mm
+        fos_yield_minimum: 2.0
+        
+      results_expected:
+        max_stress_location: "corner_or_hole"
+        max_deflection_location: "horizontal_leg_free_end"
+        
+    # ============================================
+    # LOAD CASE 2: Maximum Vertical Acceleration
+    # ============================================
+    LC2_Max_Acceleration:
+      id: 2
+      name: "Maximum Vertical Acceleration - 3G"
+      description: "Vehicle hits pothole, extreme vertical shock loading"
+      type: "static"
+      
+      loads:
+        dynamic_equipment_load:
+          type: "force"
+          magnitude: 1471.5      # N = 50 kg × 9.81 m/s² × 3.0
+          direction: [0, 0, -1]  # -Z direction
+          distribution: "uniform_pressure"
+          application_surface: "horizontal_leg_top"
+          
+      boundary_conditions:
+        chassis_mount:
+          type: "fixed"
+          location: "vertical_leg_holes"
+          constrained_dofs: [1, 1, 1, 1, 1, 1]
+          
+      acceptance_criteria:
+        max_stress_limit: 220.8    # MPa (0.8 × Sy)
+        max_deflection_limit: 2.0  # mm
+        fos_yield_minimum: 1.25
+        permanent_deformation: false
+        
+      results_expected:
+        max_stress_location: "corner_or_hole"
+        max_deflection_location: "horizontal_leg_free_end"
+        
+    # ============================================
+    # LOAD CASE 3: Fatigue - Vibration Loading
+    # ============================================
+    LC3_Fatigue_Vibration:
+      id: 3
+      name: "Fatigue Vibration - 10^6 Cycles"
+      description: "Road vibration with mean load, fatigue life assessment"
+      type: "fatigue"
+      
+      # Mean Load Component (static)
+      mean_load:
+        equipment_weight:
+          type: "force"
+          magnitude: 490.5       # N (1G mean)
+          direction: [0, 0, -1]
+          distribution: "uniform_pressure"
+          application_surface: "horizontal_leg_top"
+          
+      # Alternating Load Component
+      alternating_load:
+        vibration_amplitude:
+          type: "force"
+          magnitude: 196.2       # N = 50 kg × 9.81 × 0.4G
+          direction: [0, 0, -1]
+          distribution: "uniform_pressure"
+          application_surface: "horizontal_leg_top"
+          
+      # Load Cycle Definition
+      cycle_definition:
+        stress_ratio_R: 0.43       # = (490.5-196.2)/(490.5+196.2)
+        load_ratio: 0.43
+        max_load: 686.7            # N = 490.5 + 196.2
+        min_load: 294.3            # N = 490.5 - 196.2
+        
+      # Duty Cycle (Miner damage accumulation)
+      duty_cycle:
+        design_life_cycles: 1000000
+        required_reliability: 0.99
+        
+        blocks:
+          - name: "low_stress"
+            amplitude_factor: 0.2   # 0.2G
+            cycles_fraction: 0.9    # 90% of life
+            cycles: 900000
+            
+          - name: "high_stress"
+            amplitude_factor: 0.4   # 0.4G
+            cycles_fraction: 0.1    # 10% of life
+            cycles: 100000
+            
+      boundary_conditions:
+        chassis_mount:
+          type: "fixed"
+          location: "vertical_leg_holes"
+          constrained_dofs: [1, 1, 1, 1, 1, 1]
+          
+      acceptance_criteria:
+        predicted_life_minimum: 2000000  # cycles (2× safety factor)
+        fos_fatigue_minimum: 2.0
+        crack_initiation_cycles: 1000000
+        
+      fatigue_analysis_parameters:
+        mean_stress_correction: "goodman"
+        stress_combination_method: "max_principal"
+        damage_accumulation: "miner_linear"
+        
+      results_expected:
+        critical_location: "corner_or_hole"
+        failure_mode: "crack_initiation"
+        
+  # Load Combinations (for reference)
+  load_combinations:
+    serviceability:
+      name: "Serviceability Check"
+      combination: "1.0 × LC1"
+      
+    ultimate:
+      name: "Ultimate Strength Check"
+      combination: "1.0 × LC2"
+      
+    fatigue:
+      name: "Fatigue Life Check"
+      combination: "1.0 × LC3"
+
+  # Summary Table
+  summary:
+    - load_case: "LC1"
+      load_magnitude: "490.5 N"
+      safety_factor: "> 2.0"
+      critical_check: "Deflection"
+      
+    - load_case: "LC2"
+      load_magnitude: "1471.5 N"
+      safety_factor: "> 1.25"
+      critical_check: "Yield Strength"
+      
+    - load_case: "LC3"
+      load_magnitude: "490.5 ± 196.2 N"
+      safety_factor: "> 2.0 (life)"
+      critical_check: "Fatigue Life"

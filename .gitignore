@@ -1,0 +1,89 @@
+# FEA Fatigue Portfolio - Git Ignore File
+# Binary and large files that should not be committed
+
+# FEA solver binary results
+*.frd
+*.odb
+*.rst
+*.cdb
+*.dat
+*.fil
+*.sim
+*.stt
+*.mdl
+*.ipm
+*.log
+*.12d
+*.12e
+*.com
+*.msg
+*.pac
+*.par
+*.pes
+*.pmg
+*.prd
+*.sel
+*.stt
+*.var
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Large mesh files (keep only representative meshes)
+results/mesh_study/mesh_*.inp
+!results/mesh_study/mesh_1.inp
+!results/mesh_study/mesh_4.inp
+
+# Large result files (keep CSV summaries only)
+results/**/*.frd
+results/**/*.dat
+results/**/full_field_*.csv
+
+# Report outputs (can be regenerated)
+reports/*.pdf
+reports/*.docx
+
+# Local configuration
+.env
+.env.local

@@ -1,0 +1,11 @@
+parameter,level,value,percent_change_from_baseline
+thickness,4mm,220.5,19.1
+thickness,6mm,185.2,0.0
+thickness,8mm,152.3,-17.8
+fillet_radius,0mm,210.2,13.5
+fillet_radius,3mm,175.8,-5.1
+fillet_radius,6mm,148.5,-19.8
+fillet_radius,10mm,132.1,-28.7
+material,6061-T6,185.2,0.0
+material,7075-T6,185.2,0.0
+material,4130-Steel,185.2,0.0

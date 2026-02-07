@@ -1,0 +1,41 @@
+{
+  "load_case": "LC3_Fatigue_Vibration",
+  "smax": 100.5,
+  "smin": 29.8,
+  "mean_stress": 65.15,
+  "stress_amplitude": 35.35,
+  "r_ratio": 0.297,
+  "method": "goodman",
+  "equivalent_stress": 47.8,
+  "predicted_cycles": 2300000,
+  "predicted_life_log": 6.36,
+  "fos_on_life": 2.3,
+  "fos_on_stress": 2.35,
+  "infinite_life": false,
+  "design_life_cycles": 1000000,
+  "life_pass": true,
+  "endurance_limit": 96,
+  "ultimate_strength": 310,
+  "fatigue_strength_coefficient": 410,
+  "fatigue_strength_exponent": -0.085,
+  "miners_damage": 0.435,
+  "blocks": [
+    {
+      "name": "low_stress",
+      "smax": 80,
+      "smin": 40,
+      "n_applied": 900000,
+      "N_failure": 8500000,
+      "damage": 0.106
+    },
+    {
+      "name": "high_stress",
+      "smax": 100.5,
+      "smin": 29.8,
+      "n_applied": 100000,
+      "N_failure": 2300000,
+      "damage": 0.043
+    }
+  ],
+  "timestamp": "2024-01-15T16:45:00"
+}

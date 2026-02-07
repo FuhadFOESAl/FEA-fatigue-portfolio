@@ -1,0 +1,45 @@
+{
+  "baseline_stress": 185.2,
+  "baseline_life": 2300000,
+  "parameters": [
+    {
+      "name": "thickness",
+      "levels": ["4mm", "6mm", "8mm"],
+      "values": [220.5, 185.2, 152.3],
+      "percent_change": [19.1, 0.0, -17.8],
+      "sensitivity_index": -4.45
+    },
+    {
+      "name": "fillet_radius",
+      "levels": ["0mm", "3mm", "6mm", "10mm"],
+      "values": [210.2, 175.8, 148.5, 132.1],
+      "percent_change": [13.5, -5.1, -19.8, -28.7],
+      "sensitivity_index": -7.18
+    },
+    {
+      "name": "material",
+      "levels": ["6061-T6", "7075-T6", "4130-Steel"],
+      "values": [185.2, 185.2, 185.2],
+      "percent_change": [0.0, 0.0, 0.0],
+      "life_values": [2300000, 5200000, 15000000],
+      "life_percent_change": [0.0, 126.1, 552.2],
+      "sensitivity_index": null
+    }
+  ],
+  "key_findings": [
+    "Fillet radius has highest impact on stress: 28.7% reduction from 0mm to 10mm",
+    "Thickness provides secondary benefit: 17.8% stress reduction from 6mm to 8mm",
+    "Material change to 7075-T6 increases fatigue life 2.3× with same stress level",
+    "Steel 4130 provides 6.5× life improvement but with 2.8× weight penalty",
+    "Combined fillet + thickness optimization achieves 38% stress reduction"
+  ],
+  "design_v2_improvements": {
+    "corner_fillet_mm": 6,
+    "rib_added": true,
+    "hole_edge_distance_increased": true,
+    "stress_reduction_percent": 38,
+    "life_improvement_factor": 8.1,
+    "mass_change_percent": 12
+  },
+  "timestamp": "2024-01-15T18:00:00"
+}

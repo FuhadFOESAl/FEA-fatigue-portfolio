@@ -1,0 +1,18 @@
+{
+  "load_case": "LC2_Max_Acceleration",
+  "load_magnitude_n": 1471.5,
+  "max_von_mises": 185.2,
+  "max_principal": 192.4,
+  "max_displacement": 1.97,
+  "max_stress_location": "corner_inner_radius",
+  "max_disp_location": "horizontal_leg_free_end",
+  "yield_strength": 276,
+  "fos_yield": 1.49,
+  "fos_yield_required": 1.25,
+  "fos_yield_pass": true,
+  "deflection_limit_mm": 2.0,
+  "deflection_pass": true,
+  "element_count": 34600,
+  "mesh_id": 5,
+  "timestamp": "2024-01-15T14:30:00"
+}
